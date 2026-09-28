@@ -1,51 +1,55 @@
-# Tourism Application
+# 🌴 Tourism Application
 
-A microservices-based tourism booking platform built with Spring Boot, Spring Cloud Gateway, React, MySQL, Docker, and Docker Compose.
+A **microservices-based tourism booking platform** built with **Spring Boot, Spring Cloud Gateway, React, MySQL, Docker, and Docker Compose**. 🚀
 
-## Architecture
+## 🏗️ Architecture
 
 This repository contains a multi-module application with the following components:
 
-- `Backend/auth-service` – authentication service with JWT support
-- `Backend/booking-service` – booking management service
-- `Backend/destination-service` – destination management service
-- `Backend/packages-service` – travel package management service
-- `Backend/api-gateway` – Spring Cloud Gateway routing all API traffic through a single entry point
-- `Frontend` – React frontend that consumes the API gateway
-- `mysql-init` – MySQL initialization scripts for database bootstrapping
+* 🔐 `Backend/auth-service` – Authentication service with JWT support
+* 📅 `Backend/booking-service` – Booking management service
+* 📍 `Backend/destination-service` – Destination management service
+* 🎒 `Backend/packages-service` – Travel package management service
+* 🌐 `Backend/api-gateway` – Spring Cloud Gateway routing all API traffic through a single entry point
+* 💻 `Frontend` – React frontend that consumes the API gateway
+* 🗄️ `mysql-init` – MySQL initialization scripts for database bootstrapping
 
-## Technology Stack
+## 🛠️ Technology Stack
 
-- Java 17
-- Spring Boot 3.x
-- Spring Cloud Gateway
-- Spring Data JPA
-- MySQL 8
-- Flyway migrations
-- React 18
-- Docker & Docker Compose
-- JWT authentication
+* ☕ Java 17
+* 🍃 Spring Boot 3.x
+* 🌐 Spring Cloud Gateway
+* 🗃️ Spring Data JPA
+* 🐬 MySQL 8
+* 🔄 Flyway Migrations
+* ⚛️ React 18
+* 🐳 Docker & Docker Compose
+* 🔑 JWT Authentication
 
-## Ports
+## 🔌 Ports
 
-- `8080` – API Gateway
-- `8081` – Auth service
-- `8082` – Booking service
-- `8083` – Destination service
-- `8084` – Packages service
-- `3000` – Frontend served by Nginx via Docker
-- `3306` – MySQL database
+| Service                |   Port |
+| ---------------------- | -----: |
+| 🌐 API Gateway         | `8080` |
+| 🔐 Auth Service        | `8081` |
+| 📅 Booking Service     | `8082` |
+| 📍 Destination Service | `8083` |
+| 🎒 Packages Service    | `8084` |
+| 💻 Frontend            | `3000` |
+| 🐬 MySQL               | `3306` |
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
-- Docker
-- Docker Compose
-- Java 17 (for local backend development)
-- Node.js and npm (for local frontend development)
+Make sure you have the following installed:
 
-### Run with Docker Compose
+* 🐳 Docker
+* 🐳 Docker Compose
+* ☕ Java 17
+* 🟢 Node.js and npm
+
+### 🐳 Run with Docker Compose
 
 From the repository root:
 
@@ -53,40 +57,42 @@ From the repository root:
 docker compose up --build
 ```
 
-This will build all services and launch:
+This will build and launch:
 
-- MySQL
-- auth-service
-- booking-service
-- destination-service
-- packages-service
-- api-gateway
-- frontend
+* 🐬 MySQL
+* 🔐 Auth Service
+* 📅 Booking Service
+* 📍 Destination Service
+* 🎒 Packages Service
+* 🌐 API Gateway
+* 💻 Frontend
 
-### Run production compose
+### 🚀 Run Production Compose
 
 ```bash
 docker compose -f docker-compose.prod.yml up --build
 ```
 
-### Environment
+## 🔐 Environment Configuration
 
-The root `.env` file contains application secrets used by Docker Compose:
+Create and configure your environment variables before running the application.
+
+Example:
 
 ```env
-MYSQL_ROOT_PASSWORD=VERY_STRONG_PASSWORD
-JWT_SECRET=VERY_LONG_RANDOM_SECRET
+MYSQL_ROOT_PASSWORD=YOUR_STRONG_PASSWORD
+JWT_SECRET=YOUR_LONG_RANDOM_SECRET
 ```
 
-Update these values for your environment before running production deployments.
+⚠️ **Never commit real passwords, API keys, JWT secrets, or other sensitive credentials to GitHub.**
 
-## Local Development
+## 💻 Local Development
 
-### Backend Services
+### ☕ Backend Services
 
-Each backend service is a Spring Boot application in its own directory.
+Each backend service is a separate Spring Boot application.
 
-Example for the auth service:
+Example — Auth Service:
 
 ```bash
 cd Backend/auth-service
@@ -95,16 +101,22 @@ cd Backend/auth-service
 
 On Windows:
 
-```powershell
+```cmd
 cd Backend\auth-service
-./mvnw.cmd spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 
-Repeat for `booking-service`, `destination-service`, `packages-service`, and `api-gateway`.
+Repeat the process for:
 
-### Frontend
+* 🔐 `auth-service`
+* 📅 `booking-service`
+* 📍 `destination-service`
+* 🎒 `packages-service`
+* 🌐 `api-gateway`
 
-Install dependencies and start the React application:
+### ⚛️ Frontend
+
+Navigate to the frontend directory:
 
 ```bash
 cd Frontend
@@ -118,31 +130,41 @@ To create a production build:
 npm run build
 ```
 
-## Service Endpoints
+## 🌐 Service Endpoints
 
-The frontend is configured to use the API Gateway at:
+The frontend communicates with the API Gateway through:
 
-- `http://localhost:8080`
+```text
+http://localhost:8080
+```
 
-Gateway routes forward requests to the backend services:
+The API Gateway routes requests to the appropriate backend services:
 
-- `/api/auth/**` → `auth-service`
-- `/api/bookings/**` → `booking-service`
-- `/api/destinations/**` → `destination-service`
-- `/api/packages/**` → `packages-service`
+| Route                     | Service             |
+| ------------------------- | ------------------- |
+| 🔐 `/api/auth/**`         | Auth Service        |
+| 📅 `/api/bookings/**`     | Booking Service     |
+| 📍 `/api/destinations/**` | Destination Service |
+| 🎒 `/api/packages/**`     | Packages Service    |
 
-## Database Initialization
+## 🗄️ Database Initialization
 
-MySQL is seeded from `mysql-init/init.sql` on container startup. If you make changes to the initialization scripts, recreate the MySQL container:
+MySQL is initialized using:
+
+```text
+mysql-init/init.sql
+```
+
+If you make changes to the initialization scripts, recreate the MySQL container:
 
 ```bash
 docker compose down
 docker compose up --build
 ```
 
-## Build and Test
+## 🧪 Build & Test
 
-### Backend
+### ☕ Backend
 
 Compile a backend service:
 
@@ -157,21 +179,46 @@ Run tests:
 ./mvnw test
 ```
 
-### Frontend
+### ⚛️ Frontend
 
 ```bash
 cd Frontend
 npm test
 ```
 
-## Notes
+## 📝 Notes
 
-- The `Backend/api-gateway` service provides a common entry point for the frontend and handles routing to all backend microservices.
-- The React app is built using `react-scripts` and served from the Docker container on port `3000`.
-- Use `docker compose down` to stop the application stack.
+* 🌐 The `api-gateway` provides a common entry point for the frontend and handles routing to backend microservices.
+* ⚛️ The React application is built using `react-scripts`.
+* 🐳 The frontend is served through Docker/Nginx on port `3000`.
+* 🛑 Use the following command to stop the application stack:
 
-## Troubleshooting
+```bash
+docker compose down
+```
 
-- If ports are already in use, stop the conflicting services or change the port mappings in `docker-compose.yml`.
-- If MySQL fails to start, check that `3306` is free and verify the root password matches the `.env` file.
-- If backend services cannot connect to MySQL, ensure `docker compose up` started the `mysql` service first and that the database containers have network access.
+## 🔧 Troubleshooting
+
+### ⚠️ Ports Already in Use
+
+If a port is already being used, stop the conflicting service or update the port mappings in `docker-compose.yml`.
+
+### 🐬 MySQL Fails to Start
+
+Check that:
+
+* Port `3306` is available.
+* The MySQL configuration is correct.
+* The configured root password matches your environment configuration.
+
+### 🔌 Backend Cannot Connect to MySQL
+
+Make sure:
+
+* 🐬 The MySQL container is running.
+* 🌐 The backend services have access to the Docker network.
+* 🔐 The database credentials are correctly configured.
+
+## 👥 Project
+
+This is a **group project** developed as part of our software engineering work, involving frontend development, backend microservices, database integration, authentication, and containerization.
