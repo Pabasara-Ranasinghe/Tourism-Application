@@ -4,7 +4,7 @@ A **microservices-based tourism booking platform** built with **Spring Boot, Spr
 
 ## 🏗️ Architecture
 
-This repository contains a multi - module application with the following components:
+This repository contains a multi-module application with the following components:
 
 * 🔐 `Backend/auth-service` – Authentication service with JWT support
 * 📅 `Backend/booking-service` – Booking management service
